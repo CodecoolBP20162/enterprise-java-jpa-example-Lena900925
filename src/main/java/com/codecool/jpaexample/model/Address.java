@@ -14,7 +14,7 @@ public class Address {
     private String country;
 
     @Column(name = "Zip", length = 4)
-    private String Zip;
+    private String zipcode;
 
     @Column(name = "city")
     private String city;
@@ -25,9 +25,9 @@ public class Address {
     public Address() {
     }
 
-    public Address(String country, String Zip, String city, String addr) {
+    public Address(String country, String zipcode, String city, String addr) {
         this.country = country;
-        this.Zip = Zip;
+        this.zipcode = zipcode;
         this.city = city;
         this.addr = addr;
     }
@@ -49,11 +49,11 @@ public class Address {
     }
 
     public String getZipcode() {
-        return Zip;
+        return zipcode;
     }
 
     public void setZipcode(String zipcode) {
-        this.Zip = zipcode;
+        this.zipcode = zipcode;
     }
 
     public String getCity() {
@@ -77,7 +77,7 @@ public class Address {
         return "Address{" +
                 "id=" + id +
                 ", country='" + country + '\'' +
-                ", Zip='" + Zip + '\'' +
+                ", zipcode='" + zipcode + '\'' +
                 ", city='" + city + '\'' +
                 ", addr='" + addr + '\'' +
                 '}';
