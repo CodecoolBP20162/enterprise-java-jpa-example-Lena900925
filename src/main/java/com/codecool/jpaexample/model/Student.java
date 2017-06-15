@@ -30,8 +30,9 @@ public class Student {
     @ElementCollection
     @CollectionTable(
             name="Phone",
-            joinColumns=@JoinColumn(name="Student_Id")
+            joinColumns=@JoinColumn(name="student_id")
     )
+
     @Column(name = "phoneNumbers")
     private List<String> phoneNumbers;
 

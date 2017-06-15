@@ -22,6 +22,9 @@ public class Address {
     @Column(name = "addr")
     private String addr;
 
+    @OneToOne (mappedBy = "address")
+    private Student student;
+
     public Address() {
     }
 

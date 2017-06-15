@@ -24,7 +24,8 @@ public class JPAExample {
         }
 
         List<String> phoneNums1 = Arrays.asList("06304035751", "06304611546");
-        Klass classBp2 = new Klass("Budapest 2016-2");
+        Klass classBp2 = new Klass("Budapest 2016-2", CCLocation.BUDAPEST);
+        Klass classMk1 = new Klass("Miskolc 2017-1", CCLocation.MISKOLC);
         Address address = new Address("Hungary", "1234", "Budapest", "Macskakő út 5.");
         Student student = new Student("Ödön", "odon@tokodon.hu", birthDate1, address, phoneNums1);
         classBp2.addStudent(student);
@@ -33,17 +34,21 @@ public class JPAExample {
         transaction.begin();
         em.persist(address);
         em.persist(student);
+        em.persist(classBp2);
+        em.persist(classMk1);
         transaction.commit();
         System.out.println("Ödön saved.");
 
-        List<String> phoneNums2 = Arrays.asList("06704036464", "06206546546");
+        List<String> phoneNums2 = Arrays.asList("06707894562", "06304561232", "06704036464", "06206546546");
         Address address2 = new Address("Hungary", "6789", "Budapest", "Harap u. 3.");
-        Student student2 = new Student("Aladár", "ktyfl@gmail.com", birthDate2, address, phoneNums2);
+        Student student2 = new Student("Aladár", "ktyfl@gmail.com", birthDate2, address2, phoneNums2);
+        //
         classBp2.addStudent(student2);
 
         transaction.begin();
         em.persist(student2);
         em.persist(address2);
+        em.persist(classBp2);
         transaction.commit();
         System.out.println("Aladár saved.");
     }
@@ -73,6 +78,13 @@ public class JPAExample {
         System.out.println("--Found address #2");
         System.out.println("----address----" + foundAddress2.getAddr());
 
+        Klass foundClass1 = em.find(Klass.class, 1L);
+        System.out.println("--Found class #1");
+        System.out.println("----class----" + foundClass1.getName());
+        System.out.println("---Phone Numbers of Ödön: " + foundStudent1.getPhoneNumbers());
+        System.out.println("---Phone Numbers of Aladár: " + foundStudent2.getPhoneNumbers());
+
+        System.out.println("---Enum Location of Budapest is " + foundClass1.getCcLocation() + "---");
         em.close();
         emf.close();
 
