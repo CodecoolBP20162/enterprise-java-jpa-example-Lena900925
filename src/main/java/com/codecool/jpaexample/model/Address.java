@@ -7,18 +7,27 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+
+    @Column(name = "country")
     private String country;
-    private String zipcode;
+
+    @Column(name = "Zip", length = 4)
+    private String Zip;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "addr")
     private String addr;
 
     public Address() {
     }
 
-    public Address(String country, String zipcode, String city, String addr) {
+    public Address(String country, String Zip, String city, String addr) {
         this.country = country;
-        this.zipcode = zipcode;
+        this.Zip = Zip;
         this.city = city;
         this.addr = addr;
     }
@@ -40,11 +49,11 @@ public class Address {
     }
 
     public String getZipcode() {
-        return zipcode;
+        return Zip;
     }
 
     public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+        this.Zip = zipcode;
     }
 
     public String getCity() {
@@ -68,7 +77,7 @@ public class Address {
         return "Address{" +
                 "id=" + id +
                 ", country='" + country + '\'' +
-                ", zipcode='" + zipcode + '\'' +
+                ", Zip='" + Zip + '\'' +
                 ", city='" + city + '\'' +
                 ", addr='" + addr + '\'' +
                 '}';
